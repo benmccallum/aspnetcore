@@ -46,10 +46,13 @@ public class ResponseCachingMiddleware
             options,
             loggerFactory,
             new ResponseCachingPolicyProvider(),
-            new MemoryResponseCache(new MemoryCache(new MemoryCacheOptions
-            {
-                SizeLimit = options.Value.SizeLimit
-            })),
+            new MemoryResponseCache(
+                new MemoryCache(
+                    new MemoryCacheOptions
+                    {
+                        SizeLimit = options.Value.SizeLimit
+                    },
+                    loggerFactory)),
             new ResponseCachingKeyProvider(poolProvider, options))
     { }
 
